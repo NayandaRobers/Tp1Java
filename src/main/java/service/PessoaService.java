@@ -1,26 +1,32 @@
 package service;
 
 import model.Pessoa;
+import org.example.App;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Scanner;
 public class PessoaService {
+    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(App.class);
     public Pessoa criarPessoa() {
         Scanner scanner = new Scanner(System.in);
         Pessoa pessoa = new Pessoa();
 
-        System.out.print("Digite o nome da pessoa: ");
+
+        LOGGER.info("Digite o nome da pessoa: ");
         pessoa.setNome(scanner.nextLine());
 
-        System.out.print("Digite a idade da pessoa: ");
+        LOGGER.info("Digite a idade da pessoa: ");
         pessoa.setIdade(Integer.parseInt(scanner.nextLine()));
 
         while (true) {
-            System.out.print("Digite o email da pessoa: ");
+            LOGGER.info("Digite o email da pessoa: ");
             String email = scanner.nextLine();
             if (validarEmail(email)) {
                 pessoa.setEmail(email);
                 break;
             } else {
-                System.out.println("Email inválido. Tente novamente.");
+                LOGGER.error("Email inválido. Tente novamente.");
             }
         }
 
